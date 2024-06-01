@@ -1,0 +1,347 @@
+LESSON 13: Start the Amazon Project and Intro to Git
+Git = track changes in our code, and lets us easily undo our changes 
+Main idea of Javascript:
+1. Save the data
+2. Generate the HTML
+3. Make it interactive
+Array = represents a list
+object = group multiple values together
+Script elements works one by one, so the order matters.
+Data attribute is just another HTML attribute, that allows us to attach any information to an element. But this attribute has to start with "data-" and then give it any name using kebab-case.
+Dataset property gives us all data attributes that are attached to this element (for 
+e.g. button.dataset), it just like an object that converted kebab case property name into camel case property name.
+
+LESSON 14: Modules
+Modules = a better way to organize our code
+There is a big problem with script tags which is called naming conflicts, and it can be solved by a feature of Javascript called Modules.
+Modules basically contains a varibale inside a file so it cant cause naming conflicts outside the file
+To Create a Module:
+1. Create a file   
+2. Don't load the file with <script>
+so Any variables we create inside the file, will be contained inside the file.
+Get a Variable Out of a File:
+1. Add type="module" attribute = lets this file get variables out of other files.
+2. Export
+3. Import
+".." represents to go outside of the current folder
+Two more things to know about modules: 
+1. pull all imports at the top of the file
+2. we need to use live server
+Benifits of Modules:
+1. It helps us avoid naming conflicts.
+2. Dont have to worry about order of files
+We still need one Javascript file to load our code, that file is called entry point.
+Best Practice: Group related code together into its own file.
+De-Duplicating the data or Normalizing the data: when we are searching for product details in an array by a product id only.
+Every element that we get from the DOM has a method called .remove(), which removes it from the page
+Variables are reset when we refresh the page or when we go to a different page.
+
+LESSON 15: External Libraries, MVC, Finish the Checkout Page
+External Libraries = code that is outside of our project
+external libraries let us share code, save time and avoid duplicating work
+Best Practice: When we need something complicated, 
+- try to find an external library first.
+- before writing the code ourselves.
+How to find external library:
+google it "Javascript xyz library" or use chatgpt AI
+To use external libraries and Javascript modules together, we are going to use a special version of the library called an ESM version.
+ESM version = EcmaScript Module
+Ecmascript is just another name of javascript
+A version that works with Javascript modules is called ESM version
+Default export: it is the another way of exporting, we can use it when we only want to export 1 thing
+Each file can only have 1 default export
+The syntax import with curly brackets are called named export
+The syntax import without curly brackets are called default export
+
+We put our all event listeners into that big function because when we were regenerating all the HTML we are essentially deleting the previous HTML and replacing it
+A function can call or re-run itself, this feature is called recursion
+The technique we used that 1. update the data and 2. Regenerate all the HTML is called = MVC (Model - View - Controller)
+In MVC we split our code into 3 parts
+1. Model = saves and manages the data (so in our project all the code in data folder is called the model bcuz it saves and manages the data)
+2. View = takes the data and displays it on the page (so in our checkout.js file we take the data and generate all the the HTML so this code is called the view)
+3. Controller = runs some code when we interact with the page (so in our checkout.js file at the bottom we have some event listeners that called controller bcuz they do something when we interact with the page or with the view)
+so in MVC we divide our code into these three parts and then they interact with each other in the loop, first we use the model to generate the view then when we interact with the view it will run the controller and then the controller update the model that we have done at the bottom of the checkout.js file in the events and then finally we use the updated model to regenerate the view so thats how MVC works
+We use MVC bcuz MVC = make sure the page always matches the data so MVC is known as a design pattern and many javascript frameworks are based on MVC
+Sometimes .toFixed(2) won't work correctly for the numbers end with 5, it doesn't round them correctly like 6.005 = 6.00 (it is wrong) that's why we can use Math.round for rounding
+
+LESSON 16: Testing
+so when we are writing the code its important to test our code to see if its working correctly
+Easiest way to test = open the website and try out the code (this is called manual testing)
+Disadvantages of Manual Testing
+1. Hard to test every situation
+2. Hard to re-test the code
+To solve these problems we are going to learn another way to test our code called automated testing
+Automated Testing = using code to test code
+another name for a situation that we are testing is called a test case
+situation = test case
+How many test case should we have??
+Generally we create two type of test cases:
+1. Basic test cases = tests if the code is working
+2. Edge cases = test with values that are tricky
+we should test basic test case as well as edge cases also if there are any
+Try to test something different in each test case
+Automated testing solve second problem also, we can retest the code easily by just rerun all the testing code, it really makes the problem very easy to retest our code after we make any changes
+Group of related tests = test suite
+Testing Frameworks = external library that helps us write tests easier
+Most testing frameworks are similar, so by learning Jasmine you will be able to easily use other testing frameworks in the future
+Other testing frameworks:
+1. Jest (for ReactJS)
+2. MochaJs
+To better organized our test files we usually try to match the folder structure of the code
+Best Practice in testing is the test each condition of the if statement, this is known as test coverage.
+Test Coverage = how much of the code is being tested (try to maximize test coverage)
+Flaky Test = test that sometimes passes and sometimes fails
+Mocks, a feature of jasmine = lets us replace a method with a fake version which can do anything we want
+spyOn have records every time a method is used
+a mock only lasts for 1 test
+Unit tests = testing 1 piece of the code
+Integration test = tets many units/pieces of code working together
+2 thing to test the page:
+1. how the page looks
+2. how the page behaves
+Hooks = lets us run some code for each test
+Hooks in Jasmine:
+beforeEach() = runs code before each test
+afterEach() = runs code after each test
+beforeAll() = runs code before all tests
+afterAll() = runs code after all tests
+Process:
+1. Make changes to code 
+2. Re-run the tests
+3. Save to Git
+
+CHAPTER 17: Object-Oriented Programming (OOP)
+Another style of programming (another way we write our code)
+Object-Oriented Programming = organizing our code into objects
+The styling of programming that we have been using throughout this course is called Procedural programming
+Procedure = a set of step-by-step instructions, and it is basically a function
+in procedural programming we organize our code in diffferent functions
+Function inside an object =  method
+Shorthand method syntax:
+loadFromStorage: function(){} = longcut
+loadFromStorage(){} = Shortcut
+'this' gives us the object that contains this function so it gives us the outer object 
+Why do we use Object-Oriented Programming?
+Object-Oriented Programming = tries to represent the real world
+In a real world the cart is a physical object so in OOP we represent this physical object as a digital object, physical cart can have products inside so in our javascript object can also have porducts, physical cart also has actions we can take to modify it i.e. we can add a product or remove a product so our javascript object also has actions we can take to modify our cart like the addToCart function or removeFromCart function
+Another reason we use object-oriented programming is its easy to create multiple objects
+In the real word we can have two physical carts which are completely diferent from each other and in programming we can also have two digital carts which are completely different from each other by simply making copy of the object so again OOP tries to represent the real world
+Using a Function to create multiple objects:
+in creating multiple objects one problem is that we are copy pasting a lot of code and this can make our code messy so we can also use functions to create multiple objects
+In OOP use PascalCase for things that generate objects
+PascalCase = start every word with a capital 
+An even better way to generate objects:
+OOP has a feature called Class. A Class is specially designed for generating objects
+Class = Object generator
+classes are cleaner and have more features than using a function
+class has a slightly different syntax than objects so instead of semicolon we use equal to in property and instead of comma we use ';'
+Each object that we generate from a class is called an instance of the class
+Benifits of Classes:
+A class looks like the object that it generates, this is cleaner than using a function
+Classes have extra features for Object-oriented Programming
+first feature is called Constructor which lets us run some setup code after we create an object
+Constructor lets us put this setup code inside the class    
+The special thing about the constructor is when we generate an object it will run this constructor automatically
+Each object that we create is going to run the constructor
+More details about constructor:
+1. Has to be named "constructor"
+2. Should not return anything
+Private Properties and Methods (important feature of classes)
+Classes let us make a property or a method private which means = it can only be accessed inside the class
+To make private we just gonna add a number sign or a hash '#' infront of a property or method
+Converting an object into a class:
+what we are doing is we are basically taking a regular object and put it inside a class and then we copy over the properties
+Another important Feature of OOP:
+Inheritance = lets us reuse code between classes, it allows one class to get all the properties and methods from another class so we don't have to copy paste
+We use inheritance when we have one class which is a more specific type of another class
+Inheritance gives us a feature that we can call tha parent constructor in a child class by using a special feature of classes called 'super()'  
+super() basically calls the constructor of the parent class
+if we dont create constructor, child class by default will run the parents constructor
+Discriminator property: it tells us which class we should convert this to
+class 
+Clothing class automatically get the extrainfoHTML but then we define this method inside class Clothing so this will actually override or replace the parent's method, and this technique is called method overriding
+One more thing to know about method overriding is that if we really need to access
+to the parents method there's a feature we can use called super, it gives us access to the parent class    
+Polymorphism = it is a technique in which we use a method without knowing the class, it is an alternative to doing if statements here
+Built-in classes = classes that are provided by the language 
+new Date() = generates an object that represents the current date
+.toLocaleTimeString is a method of date object = gives the current time
+More details about 'this':
+"this" lets an object access its own properties
+In javascript 'this' can be used anywhere in our code
+When there is no object for 'this' to point to so it gives undefined
+Originally in Javascript, this = window, however this behaviour caused confusion so when they release modules, inside a module this = undefined
+If we are inside a method we can use 'this' and it will point to the object, if we are outside of a method there is no object to point to and 'this' will be undefined 
+We can use 'this' inside a function:
+'this' actually has a special feature so inside a function we can change 'this' to whatever we want to by using .call() method
+.call() is the same as calling or running the function except we add an extra parameter in the front
+this first parameter we give to .call() is going to be the value of 'this'
+Arrow functions do not change the value of 'this', so 'this' will have the same value as outside the arrow function
+Basically 'this' keeps the value that it had outside the arrow function
+Summary of 'this':
+1. inside a method, 'this' points to the outer object
+2. inside a function, this = undefined
+But we can change it to whatever we want using .call()
+3. arrow functions do not change the value of 'this'
+These rules are reasonable like this:
+if there is an object to point to 'this' will point to that object     
+if there is no object to point to 'this' will be undefined     
+and we have tools like .call() and arrow functions to kind of manipulate the value of 'this' to what we want
+Which style of programming should we use? Object-Oriented or Procedural??
+Answer: its up to you, but preferable is procedural programming in javascript bcuz it is simpler. Only use OOP when working with team that also uses it
+OOP is more popular in other languages, so its still useful to know OOP
+Private properties can only be accessed in the same class, they can't be accessed in a child class.
+In other languages, a property can be public, private or protected (protected = it can be accessed inside a class and its child classes).
+OOP is less popular in javascript bcuz it is missing some features of OOP like protected properties.     
+
+CHAPTER 18: Intro to Backend, Callback, Async Await
+What is backend?
+= another computer that manages the date of a website
+For example, in our amazon project, how does Amazon know which products we ordered? in this situation there has to be a second computer somewhere that's owned by Amazon and then our computer send the order information to this second computer and now amazon will know what we ordered, so this second computer called the backend computer or just the backend
+On the other hand our computer where we can see and interact with products this is called the frontend
+How does our computer send information to the backend?
+When two computer are connected to the internet, they can actually send messages to each other using a feature called HTTP or hyper text transfer protocol
+In an HTTP message we can actually attach information like our amazon order, when amazon's backend receives this HTTP message now amazon will know what we ordered
+XMLHttpRequest is a built-in class provided by javascript that creates a new HTTP message to send to the backend.
+message = request
+Type of requests:
+GET = get some information from the backend
+POST
+PUT
+DELETE
+So using HTTP we can send a message to any computer that's connected to the internet, to locate another computer on the internet we need to use a url
+URL = Uniform Resource Locator
+- Like an address, but for the internet.
+- Helps us locate another computer on the internet
+https://amazon.com =  the https in front means we are using http to communicate with this computer, the 's' after http means we are using a secure version of http
+the second part of a url is called a domain name, it's like an address so 
+amazon.com points to one of amazon's backend computers
+In network tab we can see all the HTTP messages that are coming in and out of our computer
+One important thing to know about the network Tab is that messages will only appear here after we open the console, if we send some messages and then we open the console it's not going to show up here, the "Network" tab only starts recording network activity after you open it. Any activity that happened before you opened it won't be shown.
+Request URL sends the request across the internet to your backend and then when backend receives the message or request it will send back a message which is called a response. And this response we can see in Response tab
+Preview tab basically takes a response and displays it in an easy to read format 
+When we send a message to the backend this message is called a request, we are requesting something from the backend, when a backend receives our request it will send an HTTP message back to us and that message is called the response.
+Request-Response Cycle = its always one request, one response, so each request that we make we will get one response from the backend
+When we send a request to the backend, it takes time for the request to travel across the internet to the backend and for the response to come back so response is not available right away and xhr will be undefined at first 
+xhr.send() is asynchronous code
+Asynchronous code means it does not wait for this line of code to finish it just sends the request and then immediately goes to the next line   
+xhr.addEventListener() is a method that listens or waits for an event and then it can run a function
+Why we put the event listener first at the top? 
+So first we need to set up the event listener and then trigger the event or send the request, this is the same as setting up an event listener for clicking a button first and then we click a button after like 'button.click()' 
+We can send different messages or different requests to the backend using URL Paths
+A URL Path is the part that comes after the domain name
+If there is no URL path the url path is slash '/'
+Each URL path will give us a different response
+A backend only supports a certain set of URL paths, if we send a request to a URL path that is not supported, the backend will respond with an error
+The backend also gives us a Status code which tells us if a request succeeded or failed
+Status code 
+starts with 4 or 5 (400, 404, 500) = failed
+starting with 4 means it was our problem
+starting with 5 means it was the backend's problem
+starts with 2 (200, 201, 204) = succeeded
+How do we know which URL paths are supported?
+There is actually no way to figure out all the URl paths that are supported and this is for security reasons, however some backends provide a documentation page
+The list of all the URL paths that are supported is called the Backend API
+API = application programming interface
+interface means how we interact with something
+The backend can respond with different types of data, so one type of data the backend respond with is Text, we can also see what type of response that got using network tab inside headers tab under content-type heading
+Another type of data the backend can respond with is JSON which allows us to send javascript objects across the internet, to the backend
+Another type of data the backend can respond with is HTML
+Finally another type of data the backend can respond with is an image
+When we type a URL in the browser, it actually sends a GET request to that URL
+Using the browser = making a GET request
+And depending on the type of response browser can display the response in a more useful way on the page
+Callback = a function to run in the future (wo functions jo asynchronous behaviour ke andr hamara kaam complete hone ke baad chalte hain)
+Promises:
+- a better way to handle asynchronous code
+- similar to done() function
+- let us wait for some asynchronous code to finish, before going to the next step
+Promise is a built-in class and when we create promise we need to give it a function, promise going to run this function immediately
+Now this inner function gets paramter called resolve, resolve is a function which works very similar to jasmine's done() function, it lets us control when to go to the next step
+We run some asynchronous code inside promise inner function and then we wait for it to finish and then we call resolve() to go to the next step
+The reason the promises are designed this way is it allows javascript to do multiple things at the same time, so when promise finishes it can do a next step but that next step is gonna be seperate from the rest of the code
+For the next step we use .then() method which run after we call resolve
+Promises split our code into seperate steps and then we can wait for one step to finish before going to the next step
+Why do we use Promise?
+Callbacks have a big problem which is multiple callbacks cause a lot of nesting, and all these nesting make our code hard to work with, so promises solve this problem by letting us flatten our code
+Inisde .then() if we want to use resolve to wait for some code to finish, we can return a new promise
+Promises help keep our code flat, that's why its recommended to use promises instead of callbacks
+Two more features of Promise:
+1. The first feature is we can give resolve a value when we call it and whatever we give to resolve is going to be saved in a paramter inside .then, so this feature lets us share a value between two steps of a promise
+2. Second feature is we can run multiple promises at the same time by using Promise.all(), it lets us run multiple promises at the same time and wait for all of them to call resolve before going to the next step and gives us an array of values that we give to resolve while calling it
+Promises are a better way to wait for asynchronous code to finish
+fetch() = better way to make HTTP requests, it uses a promise and by default it will make a get request
+When we call fetch this is going to create a promise and we can add a next step to this promise using .then(), so the way this works is that fetch is going to send a request to the backend when we get a response it's going to go to the next step and it's also going to save the response inside a parameter wo we will add a parameter called response and this will contain the response from the backend where it gives us a bunch of information about the response like status etc
+To get the data from this response we use response.json() so this will give us the json or the data attached to the response, response.json() is actually asynchronous, it returns a promise so we need to wait for this promise to finish before we continue to the next step, to do that we can actually return another promise so we are going to return response.json() and when we return a promise it will wait for this promise to finish before next step and when response.json() finishes it going to gives us data that attached to the response and it's going to save it inside the parameter of .then()'s inner function of the next step
+Instead of giving us just a big json string response.json() converted the json into an array so basically it did json.parse on the response for us and saved us a little bit of time
+To do something after this step (i.e. load products) we can actually return a promise out of a function and then keep attaching more steps to that promise
+Async Await = even better way to handle asynchronous code
+Async await is a shortcut for promises and it removes all the extra code like we need to use resolve create new promise and use .then() etc
+Async makes a function return a promise, it basically wraps a code in a promise
+If we return something from this async function so it gets converted into resolve and that value is going to be saved in a paramter in the next step
+What's the point of this feature?
+Async lets us use the second feature called await
+Await lets us wait for a promise to finish, before going to the next line 
+One way to wait for the promise is to use .then() and give it a function so 
+.then() runs this function after promise has finished, now await gives us aonther way to wait for the promise to finish intead of using .then() at the front we can just type await and then it will wait for that line to finish before going to the next step
+Await lets us write asynchronous code like normal code 
+We can only use await when we are inside an async function also the closest function has to be async, that's actually the main reason we use async so that we can use await
+Async await can only be used with promises, it doesn't do anything with the callback
+If we give resolve a value normally it will be saved in the next step as a parameter in the inner function of .then() but if we use await that value just gets returned and we can save it in a varible
+So when working with asynchronous code, a best practice is to use async await over promises and callbacks bcuz they are much cleaner 
+Error Handling:
+When we are sending HTTP requests, we could get unexpected errors.
+For callbacks, we usually set up a seperate callback just for errors, so if we get an error during the request we can handle it with this function and this is called error handling
+Usually this callback gets a parameter called error which contains some informartion about the error
+Handle errors in promises:
+Promises gives us 2 methos .then() and . catch() so if the request has an error it going to go to this catch and run the error function
+Just like callbacks .catch() gets a parameter called error which contains some informartion about the error if we need it
+Handle errors in async await:
+To catch errors when using async await we are going to use some new syntax called try / catch, now we are going to put the code that could cause an error into try Catch going to get one parameter in brackets called error which contains some informartion about the error if we need it, so catch works similarly to .catch() for promises, if there is an error inside try, it's going to catch and handle the error and run the code inside catch
+We can use try/catch to catch errors with synchronous code (or in normal code)
+Whenever we get an error, it will skip the rest of the code and go directly into catch
+Why don't we use try/catch everywhere?
+So try/catch and any error handling is meant to handle unexpected errors (that means our code is correct, but something outside our control caused the error) so we can give some instructions on what to do that's why we dont use try/catch everywhere, we only use it for unexpected errors
+We can manually create errros by using a word throw in try/catch, so throw creates a new errror or it throws an error that we are going to catch later, we need to give this error a value (any type of value like string, number or object)
+When we get an error its going to skip rest of the code inside the try curly brackets and it will go to catch and that error value is going to be saved inside the catch parameter 
+If we are using promises,, there are 2 ways to manually create an error
+1. we can just throw an error like before and it will go inside .catch() but if we await a promise instead of going into .catch() its going to go inside catch so await makes it behave sort of like synchronous code or normal code 
+throw does not work in the future
+2. Inside the promise if we need to create an error in the future, then we need to use different code. Promises gives us another way to create an error, when we create a new promise it gives us a second paramter called reject which is a function and it lets us create an error in the future
+So in promise we have two ways to create an error manually; i- we can use throw if we are creating the error synchronously or right away, ii- we can use reject if we are creating the error asynchronously or in the future
+To send data in a request, we need to use a different type of request. 
+There are common 4 Types of Requests:
+GET = get something from the backend
+POST = create something
+PUT = update something
+DELETE = delete something
+As we want to create an order so we are going to use POST to create something, POST lets us send data to the backend
+headers gives the backend more information about our request, this is needed when we are sending data to our backend
+Content-Type tells the backend what type of data we are sending in our request like json which is basically a javascript object
+In body property there is an actual data we are going to send to the backend
+We can't send an object directly, we need to convert it into a JSON string
+Inside the payload section under network tab there is the data what we send to the backend
+Window.location is a special object provided by Javascript which lets us control tha URL at the top of the browser, if we change the location object it will change the URL at the top
+Location has a property called .href which gives us the URL at the top of the browser, when we change the href property it will change the URL at the top of the browser and replace everything after the slash with the value we give in a string and then loads that file in the browser
+URL Parameters = let us save data directly in the URL for e.g. 'abc/tracking.html?orderId=123'
+'?' means we are adding a URL parameter to this URL, so parameter is a property value pair, this is sort of like an object like {orderId: '123'}
+So using URL parameter we can save some data in the URL like above, and then we can use Javascript to get that data out of the URL
+To do that we can use a built in class called URL and give it the url that we want to get the parameters from then this URL class analyzes the url that we give it and breaks it down into different parts, one of the parts are the URL parameters
+To get the parameters we use a property called url.searchParams(), url parameters are also called search parameters
+searchParams has a method called .get() which lets us get individual parameters
+Url parameters lets us save different data in each URL, and we can go back and forth between the two.
+
+What's the next step after this course?
+Learn how to create our own backend.
+1. Command Line
+2. NodeJS = create our own backend
+
+Also after this course, learn how to put a website on the internet
+
+CORS (Cross-Origin Resource Sharing) error: This means the URL your code is running on is different than backend's URL so when backend blocked your request for security reasons this error comes. Backend needs to change some settings in their backend to allow your requests
+
+.fetch() does not throw an error for status 400 errors, it will only throw error if there is a network error (or something like CORS).
+
+
+
+
